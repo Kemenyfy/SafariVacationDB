@@ -24,6 +24,7 @@ namespace safari_vacation
 
         public static void Greeting()
         {
+            Console.WriteLine("-------------------------------------");
             Console.WriteLine("What do you want to do?");
             Console.WriteLine("(A)dd");
             Console.WriteLine("(U)pdate");
@@ -42,7 +43,7 @@ namespace safari_vacation
             }
             else if (playerSelects == "R")
             {
-                // RemoveAnimal();
+                RemoveAnimal();
             }
             else if (playerSelects == "O")
             {
@@ -50,7 +51,7 @@ namespace safari_vacation
             }
             else
             {
-                Console.WriteLine("Next time pick one of the three! Grrrrrr");
+                Console.WriteLine("Next time pick one of the options! Grrrrrr");
             }
 
         }
@@ -131,12 +132,29 @@ namespace safari_vacation
 
         }
 
+        public static void RemoveAnimal()
+        {
+            // Remove Animal
+            Console.WriteLine("Which animal do you want to remove?");
+
+            var db = new SafariVacationContext();
+            var picked = Console.ReadLine();
+            var AnimalToRemove = db.SeenAnimalsTable.FirstOrDefault(f => f.Species == picked);
+
+            db.SeenAnimalsTable.Remove(AnimalToRemove);
+
+            Console.WriteLine($"Bye bye {picked}");
+
+            db.SaveChanges();
+            Greeting();
+        }
+
         public static void RandomStuffAskedByMark()
         {
             // Display all animals seen in the Jungle
             Console.WriteLine("What do you want to do?");
             Console.WriteLine($"(D)isplay all animals seen in the Jungle");
-    
+
             var playerSelects = Console.ReadLine();
             if (playerSelects == "D")
             {
