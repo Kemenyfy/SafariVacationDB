@@ -19,11 +19,16 @@ namespace safari_vacation
             {
                 System.Console.WriteLine($"{animal.Species} {animal.CountOfTimeSeen} Times. Last time at {animal.LocationOfLastSeen}");
             }
+            Greeting();
+        }
 
+        public static void Greeting()
+        {
             Console.WriteLine("What do you want to do?");
             Console.WriteLine("(A)dd");
             Console.WriteLine("(U)pdate");
             Console.WriteLine("(R)emove");
+            Console.WriteLine("(O)ther Stuff that Mark asked for");
 
             var playerSelects = Console.ReadLine();
 
@@ -39,10 +44,15 @@ namespace safari_vacation
             {
                 // RemoveAnimal();
             }
+            else if (playerSelects == "O")
+            {
+                RandomStuffAskedByMark();
+            }
             else
             {
                 Console.WriteLine("Next time pick one of the three! Grrrrrr");
             }
+
         }
 
         public static void AddAnimal()
@@ -68,6 +78,7 @@ namespace safari_vacation
                 db.SeenAnimalsTable.Add(newAnimal);
                 db.SaveChanges();
                 Console.WriteLine("Keep it up, nice job!");
+                Greeting();
             }
         }
 
@@ -93,18 +104,24 @@ namespace safari_vacation
                 Console.WriteLine("What is the new species name?");
                 var speciesName = Console.ReadLine();
                 animalToUpdate.Species = speciesName;
+                Console.WriteLine("Cool, what else?");
+                Greeting();
             }
             else if (playerSelects == "C")
             {
                 Console.WriteLine("How many times have you seen this species?");
                 var speciesCount = int.Parse(Console.ReadLine());
                 animalToUpdate.CountOfTimeSeen = speciesCount;
+                Console.WriteLine("Great, what else?");
+                Greeting();
             }
             else if (playerSelects == "L")
             {
                 Console.WriteLine("Where did you last see this species?");
                 var speciesLocation = Console.ReadLine();
                 animalToUpdate.LocationOfLastSeen = speciesLocation;
+                Console.WriteLine("Awesome, what else?");
+                Greeting();
             }
             else
             {
@@ -112,6 +129,27 @@ namespace safari_vacation
             }
             db.SaveChanges();
 
+        }
+
+        public static void RandomStuffAskedByMark()
+        {
+            // Display all animals seen in the Jungle
+            Console.WriteLine("What do you want to do?");
+            Console.WriteLine($"(D)isplay all animals seen in the Jungle");
+    
+            var playerSelects = Console.ReadLine();
+            if (playerSelects == "D")
+            {
+                Console.WriteLine("The animals you've seen in the jungle are:");
+                var db = new SafariVacationContext();
+                var animals = db.SeenAnimalsTable.Where(f => f.LocationOfLastSeen == "Jungle");
+
+                foreach (var animal in animals)
+                {
+                    System.Console.WriteLine($"{animal.Species}");
+                }
+                Greeting();
+            }
         }
     }
 }
