@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using safari_vacation.Models;
 
 namespace safari_vacation
@@ -16,7 +17,7 @@ namespace safari_vacation
 
             foreach (var animal in animals)
             {
-                System.Console.WriteLine($"{animal.Species}");
+                System.Console.WriteLine($"{animal.Species} {animal.CountOfTimeSeen} Times. Last time at {animal.LocationOfLastSeen}");
             }
 
             Console.WriteLine("What do you want to do?");
@@ -32,7 +33,7 @@ namespace safari_vacation
             }
             else if (playerSelects == "U")
             {
-                // UpdateAnimal();
+                UpdateAnimal();
             }
             else if (playerSelects == "R")
             {
@@ -40,15 +41,8 @@ namespace safari_vacation
             }
             else
             {
-
+                Console.WriteLine("Next time pick one of the three! Grrrrrr");
             }
-
-
-
-            // Update the CountOfTimesSeen and LocationOfLastSeen for an animal
-            // Console.WriteLine("What animal do you want to upgrade?");
-            // var animalToUpdate = db.SeenAnimalsTable.FirstOrDefault(animal => animal.id);
-
         }
 
         public static void AddAnimal()
@@ -73,7 +67,51 @@ namespace safari_vacation
             {
                 db.SeenAnimalsTable.Add(newAnimal);
                 db.SaveChanges();
+                Console.WriteLine("Keep it up, nice job!");
             }
+        }
+
+        public static void UpdateAnimal()
+        {
+            // Update the CountOfTimesSeen and LocationOfLastSeen for an animal
+            Console.WriteLine("What animal do you want to upgrade?");
+
+            var db = new SafariVacationContext();
+
+            var picked = Console.ReadLine();
+            var animalToUpdate = db.SeenAnimalsTable.FirstOrDefault(f => f.Species == picked);
+
+            Console.WriteLine($"Ok, you picked {picked}. What do you want to update?");
+            Console.WriteLine($"(S)pecies");
+            Console.WriteLine($"(C)ount of Times Seen");
+            Console.WriteLine($"(L)ocation of Last Seen");
+
+            var playerSelects = Console.ReadLine();
+
+            if (playerSelects == "S")
+            {
+                Console.WriteLine("What is the new species name?");
+                var speciesName = Console.ReadLine();
+                animalToUpdate.Species = speciesName;
+            }
+            else if (playerSelects == "C")
+            {
+                Console.WriteLine("How many times have you seen this species?");
+                var speciesCount = int.Parse(Console.ReadLine());
+                animalToUpdate.CountOfTimeSeen = speciesCount;
+            }
+            else if (playerSelects == "L")
+            {
+                Console.WriteLine("Where did you last see this species?");
+                var speciesLocation = Console.ReadLine();
+                animalToUpdate.LocationOfLastSeen = speciesLocation;
+            }
+            else
+            {
+                Console.WriteLine("Next time pick one of the three! Grrrrrr");
+            }
+            db.SaveChanges();
+
         }
     }
 }
