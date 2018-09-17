@@ -1,0 +1,11 @@
+/Users/Kemenyfy/sdg/cool-projects/safari-vacation/bin/Debug/netcoreapp2.1/safari-vacation.deps.json
+/Users/Kemenyfy/sdg/cool-projects/safari-vacation/bin/Debug/netcoreapp2.1/safari-vacation.runtimeconfig.json
+/Users/Kemenyfy/sdg/cool-projects/safari-vacation/bin/Debug/netcoreapp2.1/safari-vacation.runtimeconfig.dev.json
+/Users/Kemenyfy/sdg/cool-projects/safari-vacation/bin/Debug/netcoreapp2.1/safari-vacation.dll
+/Users/Kemenyfy/sdg/cool-projects/safari-vacation/bin/Debug/netcoreapp2.1/safari-vacation.pdb
+/Users/Kemenyfy/sdg/cool-projects/safari-vacation/obj/Debug/netcoreapp2.1/safari-vacation.csprojAssemblyReference.cache
+/Users/Kemenyfy/sdg/cool-projects/safari-vacation/obj/Debug/netcoreapp2.1/safari-vacation.csproj.CoreCompileInputs.cache
+/Users/Kemenyfy/sdg/cool-projects/safari-vacation/obj/Debug/netcoreapp2.1/safari-vacation.AssemblyInfoInputs.cache
+/Users/Kemenyfy/sdg/cool-projects/safari-vacation/obj/Debug/netcoreapp2.1/safari-vacation.AssemblyInfo.cs
+/Users/Kemenyfy/sdg/cool-projects/safari-vacation/obj/Debug/netcoreapp2.1/safari-vacation.dll
+/Users/Kemenyfy/sdg/cool-projects/safari-vacation/obj/Debug/netcoreapp2.1/safari-vacation.pdb
