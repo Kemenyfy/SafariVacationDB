@@ -141,9 +141,9 @@ namespace safari_vacation
             var picked = Console.ReadLine();
             var AnimalToRemove = db.SeenAnimalsTable.FirstOrDefault(f => f.Species == picked);
 
+            Console.WriteLine($"Bye bye {picked}");
             db.SeenAnimalsTable.Remove(AnimalToRemove);
 
-            Console.WriteLine($"Bye bye {picked}");
 
             db.SaveChanges();
             Greeting();
@@ -154,6 +154,8 @@ namespace safari_vacation
             // Display all animals seen in the Jungle
             Console.WriteLine("What do you want to do?");
             Console.WriteLine($"(D)isplay all animals seen in the Jungle");
+            Console.WriteLine($"(R)emove all animals that I have seen in the Desert");
+
 
             var playerSelects = Console.ReadLine();
             if (playerSelects == "D")
@@ -164,8 +166,23 @@ namespace safari_vacation
 
                 foreach (var animal in animals)
                 {
-                    System.Console.WriteLine($"{animal.Species}");
+                    Console.WriteLine($"{animal.Species}");
                 }
+                Greeting();
+            }
+            else if (playerSelects == "R")
+            {
+                Console.WriteLine("The animals you've seen in the desert are:");
+                var db = new SafariVacationContext();
+                var animals = db.SeenAnimalsTable.Where(f => f.LocationOfLastSeen == "Desert");
+
+                foreach (var animal in animals)
+                {
+                    Console.WriteLine($"{animal.Species}");
+                    db.SeenAnimalsTable.Remove(animal);
+                }
+                Console.WriteLine("And now they are gone... Sad, but true...");
+                db.SaveChanges();
                 Greeting();
             }
         }
