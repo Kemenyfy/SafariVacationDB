@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using safari_vacation.Models;
 
 namespace safari_vacation
 {
@@ -26,5 +27,8 @@ namespace safari_vacation
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {}
+
+        public DbSet<SeenAnimals> SeenAnimalsTable { get; set; }
     }
 }
+
