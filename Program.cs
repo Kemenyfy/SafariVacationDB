@@ -156,7 +156,8 @@ namespace safari_vacation
             Console.WriteLine("What do you want to do?");
             Console.WriteLine($"(D)isplay all animals seen in the Jungle");
             Console.WriteLine($"(R)emove all animals that I have seen in the Desert");
-            Console.WriteLine($"(A)dd all the CountOfTimesSeen and get a total number of animals seen");
+            Console.WriteLine($"(A)dd all the CountOfTimeSeen and get a total number of animals seen");
+            Console.WriteLine($"(G)et the CountOfTimeSeen of lions, tigers and bears");
 
             var playerSelects = Console.ReadLine();
             if (playerSelects == "D")
@@ -201,6 +202,25 @@ namespace safari_vacation
 
                 Console.WriteLine("The total of Animals seen is: " + numberOfRecords.ToString());
                 Console.WriteLine($"You have seen a total of {numberOfAnimalsSeen} animals");
+            }
+            else if (playerSelects == "G")
+            {
+                var db = new SafariVacationContext();
+                var animals = db.SeenAnimalsTable.Where(f => f.CountOfTimeSeen >= 1);
+
+                var numberOfSpecialAnimalsSeen = 0;
+                var LionsTigersBears = db.SeenAnimalsTable.Where(animal => animal.Species == "Lion" || animal.Species == "Tiger" || animal.Species == "Bear");
+
+                foreach (var animal in LionsTigersBears)
+                {
+                    numberOfSpecialAnimalsSeen += animal.CountOfTimeSeen;
+                }
+
+                Console.WriteLine($"You have seen a total of {numberOfSpecialAnimalsSeen} Lions, Tigers and Bears");
+            }
+            else
+            {
+                Console.WriteLine("Common, pick carefully next time.");
             }
         }
     }
