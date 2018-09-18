@@ -191,16 +191,16 @@ namespace safari_vacation
                 var db = new SafariVacationContext();
                 var animals = db.SeenAnimalsTable.Where(f => f.CountOfTimeSeen >= 1);
                 var numberOfRecords = 0;
-                // var numberOfAnimalsSeen = 0;
+                var numberOfAnimalsSeen = 0;
 
                 foreach (var animal in animals)
                 {
                     numberOfRecords++;
-                    // numberOfAnimalsSeen = numberOfAnimalsSeen + f.CountOfTimeSeen;
+                    numberOfAnimalsSeen += animal.CountOfTimeSeen;
                 }
 
                 Console.WriteLine("The total of Animals seen is: " + numberOfRecords.ToString());
-
+                Console.WriteLine($"You have seen a total of {numberOfAnimalsSeen} animals");
             }
         }
     }
