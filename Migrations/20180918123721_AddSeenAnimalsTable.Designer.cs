@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using safari_vacation;
@@ -9,9 +10,10 @@ using safari_vacation;
 namespace safari_vacation.Migrations
 {
     [DbContext(typeof(SafariVacationContext))]
-    partial class SafariVacationContextModelSnapshot : ModelSnapshot
+    [Migration("20180918123721_AddSeenAnimalsTable")]
+    partial class AddSeenAnimalsTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

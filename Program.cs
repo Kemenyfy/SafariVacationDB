@@ -10,6 +10,7 @@ namespace safari_vacation
         static void Main(string[] args)
         {
             // Display all animals the user has seen
+            Console.WriteLine("-----------------------------------------");
             Console.WriteLine("So far you've seen:");
 
             var db = new SafariVacationContext();
@@ -25,12 +26,13 @@ namespace safari_vacation
 
         public static void Greeting()
         {
-            Console.WriteLine("-------------------------------------");
+            Console.WriteLine("-----------------------------------------");
             Console.WriteLine("What else do you want to do?");
             Console.WriteLine("(A)dd");
             Console.WriteLine("(U)pdate");
             Console.WriteLine("(R)emove");
             Console.WriteLine("(O)ther Stuff that Mark asked for");
+            Console.WriteLine("-----------------------------------------");
 
             var playerSelects = Console.ReadLine();
 
@@ -87,6 +89,7 @@ namespace safari_vacation
         public static void UpdateAnimal()
         {
             // Update the CountOfTimesSeen and LocationOfLastSeen for an animal
+            Console.WriteLine("-----------------------------------------");
             Console.WriteLine("What animal do you want to upgrade?");
 
             var db = new SafariVacationContext();
@@ -98,11 +101,13 @@ namespace safari_vacation
             Console.WriteLine($"(S)pecies");
             Console.WriteLine($"(C)ount of Times Seen");
             Console.WriteLine($"(L)ocation of Last Seen");
+            Console.WriteLine("-----------------------------------------");
 
             var playerSelects = Console.ReadLine();
 
             if (playerSelects == "S")
             {
+                Console.WriteLine("-----------------------------------------");
                 Console.WriteLine("What is the new species name?");
                 var speciesName = Console.ReadLine();
                 animalToUpdate.Species = speciesName;
@@ -111,6 +116,7 @@ namespace safari_vacation
             }
             else if (playerSelects == "C")
             {
+                Console.WriteLine("-----------------------------------------");
                 Console.WriteLine("How many times have you seen this species?");
                 var speciesCount = int.Parse(Console.ReadLine());
                 animalToUpdate.CountOfTimeSeen = speciesCount;
@@ -119,6 +125,7 @@ namespace safari_vacation
             }
             else if (playerSelects == "L")
             {
+                Console.WriteLine("-----------------------------------------");
                 Console.WriteLine("Where did you last see this species?");
                 var speciesLocation = Console.ReadLine();
                 animalToUpdate.LocationOfLastSeen = speciesLocation;
@@ -127,6 +134,7 @@ namespace safari_vacation
             }
             else
             {
+                Console.WriteLine("-----------------------------------------");
                 Console.WriteLine("Next time pick one of the three! Grrrrrr");
             }
             db.SaveChanges();
