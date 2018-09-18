@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Collections;
 using safari_vacation.Models;
 
 namespace safari_vacation
@@ -25,7 +26,7 @@ namespace safari_vacation
         public static void Greeting()
         {
             Console.WriteLine("-------------------------------------");
-            Console.WriteLine("What do you want to do?");
+            Console.WriteLine("What else do you want to do?");
             Console.WriteLine("(A)dd");
             Console.WriteLine("(U)pdate");
             Console.WriteLine("(R)emove");
@@ -155,7 +156,7 @@ namespace safari_vacation
             Console.WriteLine("What do you want to do?");
             Console.WriteLine($"(D)isplay all animals seen in the Jungle");
             Console.WriteLine($"(R)emove all animals that I have seen in the Desert");
-
+            Console.WriteLine($"(A)dd all the CountOfTimesSeen and get a total number of animals seen");
 
             var playerSelects = Console.ReadLine();
             if (playerSelects == "D")
@@ -184,6 +185,22 @@ namespace safari_vacation
                 Console.WriteLine("And now they are gone... Sad, but true...");
                 db.SaveChanges();
                 Greeting();
+            }
+            else if (playerSelects == "A")
+            {
+                var db = new SafariVacationContext();
+                var animals = db.SeenAnimalsTable.Where(f => f.CountOfTimeSeen >= 1);
+                var numberOfRecords = 0;
+                // var numberOfAnimalsSeen = 0;
+
+                foreach (var animal in animals)
+                {
+                    numberOfRecords++;
+                    // numberOfAnimalsSeen = numberOfAnimalsSeen + f.CountOfTimeSeen;
+                }
+
+                Console.WriteLine("The total of Animals seen is: " + numberOfRecords.ToString());
+
             }
         }
     }
